@@ -5,8 +5,10 @@ const jump = () => {
     mario.classList.add('jump');
 
     setTimeout(() => {
+
         mario.classList.remove('jump');
-    }, 500)
+
+    }, 500);
 }
 
 const loop = setInterval(() => {
@@ -14,25 +16,26 @@ const loop = setInterval(() => {
     console.log('loop')
 
     const pipePosition = pipe.offsetLeft;
-    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px');
+    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
     console.log(marioPosition);
 
-    if (pipePosition < 120 && pipePosition > 0 && marioPosition < 80) {
+    if (pipePosition <= 105 && pipePosition > 0 && marioPosition < 80) {
 
-        pipe.style.animation = 'none'
-        pipe.style.left = '${pipePosition}px';
+        pipe.style.animation = 'none';
+        pipe.style.left = `${pipePosition}px`;
 
-        mario.style.animation = 'none'
-        mario.style.left = '${marioPosition}px';
+        mario.style.animation = 'none';
+        mario.style.bottom = `${marioPosition}px`;
 
-        mario.src = './img/game-over.png';
-        mario.style.width = '75px'
-        mario.style.marginLeft = '50px'
+        mario.src  = './img/gameover.png';
+        mario.style.width = '75px';
+        mario.style.marginLeft = '30px';
+        mario.style.marginBottom = '-2px';
 
-        clearInterval(loop)
+        clearInterval(loop);
     }
 
-}, 10)
+}, 10);
 
-document.addEventListener('keydown', jump)
+document.addEventListener('keydown', jump);
